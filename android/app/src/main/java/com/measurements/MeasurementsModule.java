@@ -88,4 +88,19 @@ public class MeasurementsModule extends ReactContextBaseJavaModule {
 
         promise.resolve(!(hasBackKey && hasHomeKey));
     }
+
+    @ReactMethod
+    public void hasMenuKey(final Promise promise) {
+        promise.resolve(ViewConfiguration.get(reactContext).hasPermanentMenuKey());
+    }
+
+    @ReactMethod
+    public void hasBackKey(final Promise promise) {
+        promise.resolve(KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK));
+    }
+
+    @ReactMethod
+    public void hasHomeKey(final Promise promise) {
+        promise.resolve(KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME));
+    }
 }
