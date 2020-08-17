@@ -35,23 +35,23 @@ export default () => {
     });
   }, []);
 
+  const infoString = JSON.stringify({
+    hasNotch: DeviceInfo.hasNotch(),
+    isLandscape,
+    layoutHeight,
+    screenHeight: screenDimensions.height,
+    windowHeight: windowDimensions.height,
+    statusBarHeight: StatusBar.currentHeight,
+    SOFT_MENU_BAR_ENABLED: Measurements.SOFT_MENU_BAR_ENABLED,
+    hasSoftKeys,
+    hasSoftKeys2,
+    hasSoftKeys3,
+  });
+
   return (
     <View style={{flex: 1, backgroundColor: 'blue'}} onLayout={onLayout}>
       <View style={{margin: 8, flex: 1, backgroundColor: 'dodgerblue'}}>
-        <Text style={{margin: 32, backgroundColor: 'white'}}>
-          {JSON.stringify({
-            hasNotch: DeviceInfo.hasNotch(),
-            isLandscape,
-            layoutHeight,
-            screenHeight: screenDimensions.height,
-            windowHeight: windowDimensions.height,
-            statusBarHeight: StatusBar.currentHeight,
-            SOFT_MENU_BAR_ENABLED: Measurements.SOFT_MENU_BAR_ENABLED,
-            hasSoftKeys,
-            hasSoftKeys2,
-            hasSoftKeys3,
-          })}
-        </Text>
+        <Text style={{margin: 32, backgroundColor: 'white'}}>{infoString}</Text>
       </View>
     </View>
   );
