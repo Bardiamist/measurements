@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
+import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
 import com.facebook.react.bridge.Promise;
@@ -70,4 +73,11 @@ public class MeasurementsModule extends ReactContextBaseJavaModule {
         promise.resolve(hasImmersive());
     }
 
+    @ReactMethod
+    public void hasSoftKeys2(final Promise promise) {
+        boolean hasMenuKey = ViewConfiguration.get(reactContext).hasPermanentMenuKey();
+        boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+
+        promise.resolve(!hasMenuKey && !hasBackKey);
+    }
 }
