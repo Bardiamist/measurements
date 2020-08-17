@@ -80,4 +80,12 @@ public class MeasurementsModule extends ReactContextBaseJavaModule {
 
         promise.resolve(!hasMenuKey && !hasBackKey);
     }
+
+    @ReactMethod
+    public void hasSoftKeys3(final Promise promise) {
+        boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+        boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
+
+        promise.resolve(!(hasBackKey && hasHomeKey));
+    }
 }

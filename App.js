@@ -13,6 +13,7 @@ export default () => {
   const [isLandscape, setIsLandscape] = useState(false);
   const [hasSoftKeys, setHasSoftKeys] = useState(false);
   const [hasSoftKeys2, setHasSoftKeys2] = useState(false);
+  const [hasSoftKeys3, setHasSoftKeys3] = useState(false);
 
   const onLayout = useCallback(({nativeEvent: {layout}}) => {
     setLayoutHeight(layout.height);
@@ -28,6 +29,9 @@ export default () => {
     });
     Measurements.hasSoftKeys2().then((nextHasPermanentMenuKey) => {
       setHasSoftKeys2(nextHasPermanentMenuKey);
+    });
+    Measurements.hasSoftKeys3().then((nextHasPermanentMenuKey) => {
+      setHasSoftKeys3(nextHasPermanentMenuKey);
     });
   }, []);
 
@@ -45,6 +49,7 @@ export default () => {
             SOFT_MENU_BAR_ENABLED: Measurements.SOFT_MENU_BAR_ENABLED,
             hasSoftKeys,
             hasSoftKeys2,
+            hasSoftKeys3,
           })}
         </Text>
       </View>
