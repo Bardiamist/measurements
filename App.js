@@ -1,10 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback, useEffect} from 'react';
-import {Dimensions, StatusBar, View, Text} from 'react-native';
+import {Dimensions, StatusBar, NativeModules, View, Text} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 const screenDimensions = Dimensions.get('screen');
 const windowDimensions = Dimensions.get('window');
+
+const {Measurements} = NativeModules;
 
 export default () => {
   const [layoutHeight, setLayoutHeight] = useState(0);
@@ -31,6 +33,7 @@ export default () => {
             screenHeight: screenDimensions.height,
             windowHeight: windowDimensions.height,
             statusBarHeight: StatusBar.currentHeight,
+            SOFT_MENU_BAR_ENABLED: Measurements.SOFT_MENU_BAR_ENABLED,
           })}
         </Text>
       </View>
