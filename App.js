@@ -11,6 +11,8 @@ const {Measurements} = NativeModules;
 export default () => {
   const [layoutHeight, setLayoutHeight] = useState(0);
   const [isLandscape, setIsLandscape] = useState(false);
+  const [hasSoftKeys, setHasSoftKeys] = useState(false);
+  const [hasPermanentMenuKey, setHasPermanentMenuKey] = useState(false);
 
   const onLayout = useCallback(({nativeEvent: {layout}}) => {
     setLayoutHeight(layout.height);
@@ -20,6 +22,13 @@ export default () => {
     DeviceInfo.isLandscape().then((nextIsLandscape) => {
       setIsLandscape(nextIsLandscape);
     });
+
+    Measurements.hasSoftKeys().then((nextHasSoftKeys) => {
+      setHasSoftKeys(nextHasSoftKeys);
+    });
+    // Measurements.hasPermanentMenuKey().then((nextHasPermanentMenuKey) => {
+    //   setHasSoftKeys(nextHasPermanentMenuKey);
+    // });
   }, []);
 
   return (
@@ -34,6 +43,8 @@ export default () => {
             windowHeight: windowDimensions.height,
             statusBarHeight: StatusBar.currentHeight,
             SOFT_MENU_BAR_ENABLED: Measurements.SOFT_MENU_BAR_ENABLED,
+            hasSoftKeys,
+            hasPermanentMenuKey,
           })}
         </Text>
       </View>
